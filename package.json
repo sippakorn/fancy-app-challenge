@@ -1,0 +1,17 @@
+{
+  "name": "fancy-app-challenge",
+  "version": "1.0.0",
+  "description": "Taskworld Fancy App Challenge",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sippakorn Saeiao",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.5"
+  }
+}
