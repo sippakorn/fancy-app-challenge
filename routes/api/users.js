@@ -1,8 +1,11 @@
-const router = require('express').Router();
+const router = require("express").Router(),
+  winston = require("./../../config/logger");
 
-router.post('/', (req, res, next) => {
+const logger = winston.logger;
+router.post("/", (req, res, next) => {
   // mock to verify that user integration test work
-  return res.status(200).json({"user": req.body});
+  logger.info('create user successfully! return user');
+  return res.status(200).json({ user: req.body });
 });
 
 module.exports = router;
