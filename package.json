@@ -4,12 +4,17 @@
   "description": "Taskworld Fancy App Challenge",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha '**/*.spec.js'"
   },
   "author": "Sippakorn Saeiao",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.16.4"
+    "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
+    "cors": "^2.8.4",
+    "express": "^4.16.4",
+    "mocha": "^5.2.0",
+    "supertest": "^3.3.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.5"
