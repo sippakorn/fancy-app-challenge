@@ -1,9 +1,11 @@
 const express = require('express'),
   constant = require('./constant'),
+  config = require('./config/config'),
   bodyParser = require('body-parser'),
   cors = require('cors')
   logger = require('./config/logger'),
-  morgan = require('morgan');
+  morgan = require('morgan'),
+  db = require('./config/db');
 
 const accessLogger = logger.accessLogger;
 
@@ -15,8 +17,8 @@ app.use(bodyParser.json());
 app.use(require('./routes'));
 
 app.get('/', (req, res) => res.send('Hello World!'));
-app.listen(constant.express.port || 1234, () =>
-  console.log(`${constant.common.appName} webservice listening on port ${constant.express.port}`)
+app.listen(config.express.port || 1234, () =>
+  console.log(`${constant.common.appName} webservice listening on port ${config.express.port}`)
 );
 
 module.exports = app;
