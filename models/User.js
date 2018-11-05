@@ -1,5 +1,4 @@
 const mongoose = require('mongoose'),
-  uniqueValidator = require('mongoose-unique-validator'),
   crypto = require('crypto'),
   language = require('./languages');
 
@@ -11,7 +10,7 @@ const UserSchema = new mongoose.Schema(
       type: String,
       unique: true,
       required: [true, "can't be blank"],
-      match: [/\S+@\S+\.\S+/, "is invalid"],
+      match: [/\S+@\S+\.\S+/, 'is invalid'],
       index: true
     },
     hash: String,
@@ -29,20 +28,18 @@ const UserSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-UserSchema.plugin(uniqueValidator, { message: "is already taken." });
-
 UserSchema.methods.validPassword = function(password) {
   var hash = crypto
-    .pbkdf2Sync(password, this.salt, 10000, 512, "sha512")
-    .toString("hex");
+    .pbkdf2Sync(password, this.salt, 10000, 512, 'sha512')
+    .toString('hex');
   return this.hash === hash;
 };
 
 UserSchema.methods.setPassword = function(password) {
-  this.salt = crypto.randomBytes(16).toString("hex");
+  this.salt = crypto.randomBytes(16).toString('hex');
   this.hash = crypto
-    .pbkdf2Sync(password, this.salt, 10000, 512, "sha512")
-    .toString("hex");
+    .pbkdf2Sync(password, this.salt, 10000, 512, 'sha512')
+    .toString('hex');
 };
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = mongoose.model('User', UserSchema);

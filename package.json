@@ -16,7 +16,6 @@
     "express": "^4.16.4",
     "mocha": "^5.2.0",
     "mongoose": "^5.3.9",
-    "mongoose-unique-validator": "^2.0.2",
     "morgan": "^1.9.1",
     "sinon": "^7.1.1",
     "supertest": "^3.3.0",
