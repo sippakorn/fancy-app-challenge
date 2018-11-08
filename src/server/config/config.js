@@ -5,7 +5,7 @@ const config = {
     name: "fancy_app_challenge"
   },
   express: {
-    port: 1234
+    port: 8080
   }
 };
 

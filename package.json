@@ -2,9 +2,14 @@
   "name": "fancy-app-challenge",
   "version": "1.0.0",
   "description": "Taskworld Fancy App Challenge",
-  "main": "app.js",
+  "main": "src/server/app.js",
   "scripts": {
-    "test": "mocha '**/*.spec.js'"
+    "build": "webpack --mode production",
+    "start": "npm run build && node src/server/index.js",
+    "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
+    "server": "nodemon src/server/index.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "mocha 'tests/**/*.spec.js'"
   },
   "author": "Sippakorn Saeiao",
   "license": "MIT",
@@ -19,9 +24,32 @@
     "morgan": "^1.9.1",
     "sinon": "^7.1.1",
     "supertest": "^3.3.0",
-    "winston": "^3.1.0"
+    "winston": "^3.1.0",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
   },
   "devDependencies": {
-    "nodemon": "^1.18.5"
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.0",
+    "babel-loader": "^8.0.0",
+    "clean-webpack-plugin": "^0.1.19",
+    "concurrently": "^4.0.0",
+    "css-loader": "^1.0.0",
+    "eslint": "^5.0.0",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "file-loader": "^2.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "nodemon": "^1.18.5",
+    "style-loader": "^0.23.0",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.5.0",
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.3"
   }
 }

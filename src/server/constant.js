@@ -1,5 +1,5 @@
 const common = {
-  appName: "Fancy App Challenge"
+  appName: 'Fancy App Challenge'
 };
 
 module.exports.common = common;

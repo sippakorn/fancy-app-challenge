@@ -1,6 +1,6 @@
 const assert = require('chai').assert;
 
-const User = require("./../../../models/User");
+const User = require('./../../../../src/server/models/User');
 
 describe("User model", () => {
   it("should return true if given password is match with stored hash", done => {
