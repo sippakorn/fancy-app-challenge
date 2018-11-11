@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
 import './app.css';
-import ReactImage from './react.png';
+import { Provider } from 'react-redux';
 
-export default class App extends Component {
-  state = { username: null };
+import store from './store';
+import AddUser from './components/AddUser';
 
-  componentDidMount() {
-    fetch('/api/getUsername')
-      .then(res => res.json())
-      .then(user => this.setState({ username: user.username }));
-  }
-
+/* eslint-disable-next-line react/prefer-stateless-function */
+class App extends Component {
   render() {
-    const { username } = this.state;
     return (
-      <div>
-        {username ? <h1>{`Hello ${username}`}</h1> : <h1>Loading.. please wait!</h1>}
-        <img src={ReactImage} alt="react" />
-      </div>
+      <Provider store={store}>
+        <div className="App">
+          <header className="App-header">
+            <h1 className="App-title">Welcome to React</h1>
+          </header>
+          <AddUser email="" password="" />
+        </div>
+      </Provider>
     );
   }
 }
+/* eslint-enable */
+
+export default App;

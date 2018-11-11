@@ -1,13 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { REGISTER_PAGE_UNLOADED } from '../actions/types';
+import PropTypes from 'prop-types';
+import { REGISTER_PAGE_UNLOADED, UPDATE_FIELD_AUTH } from '../actions/types';
 import { createUser } from '../actions/user';
 
 const mapStateToProps = state => ({
-  ...state.auth
+  ...state.user
 });
 
 const mapDispatchToProps = dispatch => ({
+  onChangeEmail: value => dispatch({ type: UPDATE_FIELD_AUTH, key: 'email', value }),
+  onChangePassword: value => dispatch({ type: UPDATE_FIELD_AUTH, key: 'password', value }),
   onSubmit: (email, password) => {
     dispatch(createUser({ email, password }));
   },
@@ -15,11 +18,13 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class AddUser extends React.Component {
-  constructor() {
-    super();
-    this.submitForm = (username, email, password) => (ev) => {
+  constructor(props) {
+    super(props);
+    this.changeEmail = ev => this.props.onChangeEmail(ev.target.value);
+    this.changePassword = ev => this.props.onChangePassword(ev.target.value);
+    this.submitForm = (email, password) => (ev) => {
       ev.preventDefault();
-      this.props.onSubmit(username, email, password);
+      this.props.onSubmit(email, password);
     };
   }
 
@@ -27,9 +32,13 @@ class AddUser extends React.Component {
     this.props.onUnload();
   }
 
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
   render() {
-    const email = this.props.email;
-    const password = this.props.password;
+    const email = this.props.email || '';
+    const password = this.props.password || '';
 
     return (
       <div className="auth-page">
@@ -68,6 +77,20 @@ class AddUser extends React.Component {
     );
   }
 }
+
+AddUser.defaultProps = {
+  inProgress: false
+};
+
+AddUser.propTypes = {
+  email: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  inProgress: PropTypes.bool,
+  onSubmit: PropTypes.func.isRequired,
+  onUnload: PropTypes.func.isRequired,
+  onChangeEmail: PropTypes.func.isRequired,
+  onChangePassword: PropTypes.func.isRequired
+};
 
 export default connect(
   mapStateToProps,
