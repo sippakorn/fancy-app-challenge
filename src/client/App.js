@@ -1,9 +1,20 @@
 import React, { Component } from 'react';
-import './app.css';
 import { Provider } from 'react-redux';
+import { createGlobalStyle } from 'styled-components';
 
 import store from './store';
 import AddUser from './components/AddUser';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    color: rgba(#000000, 0.8);
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    line-height: 1.6em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+`;
 
 /* eslint-disable-next-line react/prefer-stateless-function */
 class App extends Component {
@@ -11,9 +22,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
-          <header className="App-header">
-            <h1 className="App-title">Welcome to React</h1>
-          </header>
+          <GlobalStyle />
           <AddUser email="" password="" />
         </div>
       </Provider>
