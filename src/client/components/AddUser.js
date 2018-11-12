@@ -9,7 +9,8 @@ import {
   FormField,
   FormFieldLabel,
   FormFieldInput,
-  FormButton
+  FormButton,
+  FormFooter
 } from './Styles.style';
 
 const mapStateToProps = state => ({
@@ -45,8 +46,7 @@ class AddUser extends React.Component {
   }
 
   render() {
-    const email = this.props.email || '';
-    const password = this.props.password || '';
+    const { email, password } = this.props;
 
     return (
       <FormWrapper onSubmit={this.submitForm(email, password)}>
@@ -71,22 +71,31 @@ class AddUser extends React.Component {
         </FormField>
         <FormField>
           <FormFieldLabel />
+          <FormFieldInput
+            type="password"
+            placeholder="Retype Password"
+            value={this.props.passwordRetype}
+            onChange={this.changePassword}
+          />
+        </FormField>
+        <FormFooter>
           <FormButton type="submit" disabled={this.props.inProgress}>
             Register
           </FormButton>
-        </FormField>
+        </FormFooter>
       </FormWrapper>
     );
   }
 }
 
 AddUser.defaultProps = {
-  inProgress: false
+  inProgress: true
 };
 
 AddUser.propTypes = {
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
+  passwordRetype: PropTypes.string.isRequired,
   inProgress: PropTypes.bool,
   onSubmit: PropTypes.func.isRequired,
   onUnload: PropTypes.func.isRequired,

@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { createGlobalStyle } from 'styled-components';
 
 import store from './store';
+// import Login from './components/Login';
 import AddUser from './components/AddUser';
 
 const GlobalStyle = createGlobalStyle`
@@ -23,7 +24,7 @@ class App extends Component {
       <Provider store={store}>
         <div className="App">
           <GlobalStyle />
-          <AddUser email="" password="" />
+          <AddUser email="" password="" passwordRetype="" />
         </div>
       </Provider>
     );

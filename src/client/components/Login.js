@@ -6,7 +6,9 @@ import {
   FormField,
   FormFieldLabel,
   FormFieldInput,
-  FormButton
+  FormButton,
+  FormFooter,
+  FormFieldError
 } from './Styles.style';
 
 class Login extends React.Component {
@@ -22,16 +24,17 @@ class Login extends React.Component {
         <FormHeader>Fancy App</FormHeader>
         <FormField>
           <FormFieldLabel>Email</FormFieldLabel>
-          <FormFieldInput />
+          <FormFieldInput type="email" placeholder="user@example.com" />
+          <FormFieldError>Email is invalid</FormFieldError>
         </FormField>
         <FormField>
           <FormFieldLabel>Password</FormFieldLabel>
-          <FormFieldInput />
+          <FormFieldInput type="password" placeholder="Password" />
         </FormField>
-        <FormField>
-          <FormFieldLabel />
+        <FormFooter>
           <FormButton>Login</FormButton>
-        </FormField>
+          <FormButton>Create a new account</FormButton>
+        </FormFooter>
       </FormWrapper>
     );
   }
